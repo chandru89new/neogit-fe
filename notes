@@ -1,0 +1,89 @@
+todos:
++ if submodule, how to handle it?
++ file contents display
++ login / auth setup 
++ basic/general notfound page / route 
+- push to github
+- deploy to AWS or somewhere  
+- icons for files/folders/submodules
+- cache repo details
+- emit errors from components (instead of handling them there)
++ decouple components from routes (via props)
+
+/
+- page checks if there is token and if token is valid 
+- if not valid, page redirects to /login
+- if yes, page redirects to /dash
+
+/login 
+- page checks if there is token and if token is valid
+- if not valid, show a "Login via GitHub" button
+- else, redirect to /dash 
+
+"Login via GitHub" button click
+- initialize params and build GitHub login url
+- store state in localStorage
+- go to GitHub login url 
+
+(callback)
+/get_token
+- check if there is code and state in query (if not, send to /login with error msg)
+- check if state is equal to localStorage (if not, send to /login with error msg)
+- post to local api to get token
+- if no token received, send to /login with error msg 
+- if token received, send to /dash 
+
+/dash 
+- check if there is token and token is valid (if not redirect to /login with error)
+- fetch other data
+
+
+======
+ROUTES and components
+======
+
+/
+/search
+/about
+/:userName
+/:userName/:repoName/
+/:userName/:repoName/:folder 
+/:userName/:repoName/history
+
+
+===
+GITHUB API 
+===
+
+get basic profile details
+  base/users/:user|:org
+
+get repos
+  base/users/:user|:org/repos 
+
+get a specific repo 
+  base/repos/:user/:repo 
+
+get contents of a repo 
+  base/repos/:user/:repo/contents
+
+
+147bfbf1001cc56245a6fd253ff3a18a88619eaf
+
+/content/:x
+x is file
+- get data from /contents/x 
+- if response.type == submodule, show data as-is and dont link 
+- if response.type == file, decode content and show in frame 
+x is dir 
+- get data from /contents/x
+- if response == array, show content 
+
+
+caching userProfiles
+initially userProfiles = {}
+on mounted() of userProfiles 
+- if store.userprofiles[username] is empty
+  - axios call 
+  - store result in store.userprofiles[username]
+- else show data 

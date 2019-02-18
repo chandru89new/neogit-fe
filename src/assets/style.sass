@@ -1,0 +1,120 @@
+// imports
+@import './theme.sass'
+
+// basic reset (slightly modified Eric Meyer's)
+@import './reset.sass'
+
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+
+// general
+body 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-size: 16px
+  line-height: 1.7
+  background: lighten($lightest, 0%)
+a 
+  text-decoration: none 
+  color: $highlight
+h6
+  font-size: 0.75em
+  text-transform: uppercase
+h5 
+  font-size: 0.875em
+  text-transform: uppercase
+h4 
+  font-size: 1em
+  font-weight: bold 
+  text-transform: uppercase
+h3 
+  font-size: 1.5em
+  font-weight: bold 
+  letter-spacing: -1px 
+h2 
+  font-size: 1.75em
+  font-weight: normal 
+  letter-spacing: -1px
+h1
+  font-size: 2.25em
+  font-weight: bold
+  letter-spacing: -1px
+img 
+  max-width: 100%
+input, button
+  padding: 0.25em 0.75em
+  font-size: inherit
+  border-radius: $borderRadius
+  border: 1px solid lighten($primary, 60%)
+input:hover, input:focus
+  outline: 0
+
+
+// components
+.btn, a.btn
+  display: inline-block 
+  cursor: pointer
+  padding: 0.25em 0.75em
+  border-radius: $borderRadius 
+  text-align: center 
+  border: 1px solid $highlight
+  transition: 0.2s ease-in-out
+  &:disabled
+    cursor: not-allowed
+    border-color: lighten($primary, 60%)
+  &:hover:not(:disabled)
+    color: $primary
+    border-color: $primary
+  &.btn-dark:not(:disabled)
+    background: $primary
+    color: $lightest
+    border-color: $primary
+  &.btn-highlight:not(:disabled)
+    background: $highlight
+    color: $lightest
+    border-color: $highlight
+
+.input-group
+  display: flex 
+  width: 100%
+  input 
+    flex: 3
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    border-right: 0px
+  button 
+    flex: 1
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+
+.card
+  background: white
+  border-radius: $borderRadius 
+  border: 1px solid lighten($primary, 70%)
+  padding: 2em
+  box-shadow: 0px 10px 30px 0 lighten($primary, 70%)
+  &.no-padding
+    padding: 0em !important
+
+.spacer
+  margin: 3em 0
+  &.mini
+    margin: 1em 0
+
+.file-card
+  padding: 1em
+  &:not(:last-child)
+    border-bottom: 1px solid lighten($primary, 70%)
+
+// helpers
+.faded 
+  color: lighten($primary, 30%)
+
+// animations
+.fader-enter-active, .fader-leave-active
+  transition: opacity 0.3s ease-in-out
+.fader-enter-to, .fader-leave
+  opacity: 1
+.fader-enter, .fader-leave-to
+  opacity: 0
+// .fader-enter-active, .fader-leave-active
+  // opacity: 0.5
